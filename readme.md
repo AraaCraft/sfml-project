@@ -9,8 +9,9 @@ This project is a mentored initiative aimed at exploring the C++ programming lan
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
+    - [Linux](#linux)
+        - [Arch Linux](#arch-linux)
+        - [Other distributions](#other-distributions)
 
 ## Getting Started
 
@@ -19,19 +20,24 @@ To get started with this project, you'll need to set up your development environ
 ## Prerequisites
 
 - C++17 or higher
-- SFML 2.6.1 or higher
-- A compatible IDE or text editor (e.g., Visual Studio, Code::Blocks, or Visual Studio Code)
+- SFML 2.6.1 or higher if you can't launch **arch-requirements.sh**
+- A code editor
 
 ## Installation
 ### Linux
-- ### Arch Linux
+- #### Arch Linux
 
-If you are using Arch based distribution, you can easily set up SFML the project by running the following commands:
+    If you have an Arch based distribution, you can easily set up SFML the project by running the following commands:
 
-```bash
-chmod +x arch-requirements.sh compile.sh # Gain execution access to these both files
-./arch-requirements.sh
-```
+    ```bash
+    chmod +x arch-requirements.sh compile.sh # Gain execution access to these both files
+    ./arch-requirements.sh
+    ```
+
+- #### Other distributions
+    ```bash
+    chmod +x compile.sh # Gain execution access to the compile script
+    ```
 
 ### Building and running the project
 After the setup of SFML is complete (its include folder should be located at **/usr/include/SFML** and its libraries should be located at **/usr/lib**, with a name like). You can now compile the project.

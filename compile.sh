@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Color definitions to output colored text
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No color
+
 CXX=g++  # Compiler
 STD="-std=c++17"  # C++ standard
 DIAGNOSTICS="-fdiagnostics-color=always"
@@ -32,8 +37,8 @@ ${CXX} ${DIAGNOSTICS} ${STD} "${FILE}" -I${INCLUDE_DIR} -L${LIB_DIR} ${LIBS} -o 
 
 # Check if compilation succeeded
 if [ $? -eq 0 ]; then
-    echo "Compilation succeeded : ${OUTPUT}"
+    echo -e "${GREEN}Compilation succeeded : ${OUTPUT}${NC}"
 else
-    echo "Compilation error."
+    echo -e "${RED}Compilation error.${NC}"
     exit 1
 fi
