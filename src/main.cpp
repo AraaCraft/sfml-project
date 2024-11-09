@@ -14,7 +14,8 @@ int main()
 
     //Balle
     sf::CircleShape ball;
-    ball.setRadius(15);
+    int sizeBall = 15;
+    ball.setRadius(sizeBall);
     ball.setFillColor(sf::Color::Cyan);
     ball.setPosition(screenWidth/2, screenHeight/2);
 
@@ -38,6 +39,9 @@ int main()
     //Vitesse balle
     float speedBall = 600;
 
+    //Détermine si la balle a le droit de bouger
+    bool ballCanMove = false;
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -50,24 +54,72 @@ int main()
         //deltaTime
         float deltaTime = clock.restart().asSeconds();
 
-        // Logic loop
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+
+
+        // // Logic loop
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))            //Ball movement
+        {
+            ballCanMove = true;
+        }
+
+        if (ballCanMove == true)
         {
             ball.move(0, -speedBall * deltaTime);
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        
+
+        if ((ball.getPosition().x >= racket1.getPosition().x  //Si la position x de la balle est à droite de la raquette
+        && ball.getPosition().y >= racket1.getPosition().y) //ET que sa position y est en bas de la raquette
+
+        &&               //COLLISION racket1
+        
+        (ball.getPosition().x <= (racket1.getPosition().x + widthRacket)) //ET que sa position x est à gauche de la raquette
+        && ball.getPosition().y <= (racket1.getPosition().y + heightRacket)) //ET que sa position y est en haut de la raquette
+        {
+            speedBall = -speedBall;
+        }
+
+          if ((ball.getPosition().x >= racket2.getPosition().x - sizeBall 
+        && ball.getPosition().y >= racket2.getPosition().y - sizeBall) 
+
+        &&               //COLLISION racket2                                                // FIXME : Régler le soucis d'enfoncement de la balle
+        
+        (ball.getPosition().x <= (racket2.getPosition().x + widthRacket - sizeBall)) 
+        && ball.getPosition().y <= (racket2.getPosition().y + heightRacket - sizeBall)) 
+        {
+            speedBall = -speedBall;
+        }
+
+
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))         //Racket 1 movement
         {
             if (racket1.getPosition().x >= 0)
             {
             racket1.move(-speedRacket * deltaTime,0);
             }
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))           
         {
             if (racket1.getPosition().x <= screenWidth-widthRacket)
             {
             racket1.move(+speedRacket * deltaTime,0); 
+            }
+        }
+
+         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))         //Racket 2 movement
+        {
+            if (racket2.getPosition().x >= 0)
+            {
+            racket2.move(-speedRacket * deltaTime,0);
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))           
+        {
+            if (racket2.getPosition().x <= screenWidth-widthRacket)
+            {
+            racket2.move(+speedRacket * deltaTime,0); 
             }
         }
 
