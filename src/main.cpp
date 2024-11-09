@@ -1,5 +1,11 @@
 // Tutorial : https://www.sfml-dev.org/tutorials/2.6/start-linux.php > Compiling a SFML Program
 
+//TODO Gérer les collisions des bords gauche et droit.
+//TODO Gérer la variation du mouvement de la balle. (Déviation à 45°)
+
+//TODO Rajouter système de score
+//TODO Rajouter une ligne centrale pour le visuel
+
 #include <SFML/Graphics.hpp>
 
 int main()
@@ -37,7 +43,7 @@ int main()
     //Vitesse raquette
     float speedRacket = 800;
     //Vitesse balle
-    float speedBall = 600;
+    float speedBall = 800;
 
     //Détermine si la balle a le droit de bouger
     bool ballCanMove = false;
@@ -68,11 +74,11 @@ int main()
         }
 
         
-
+                    //COLLISION racket1
         if ((ball.getPosition().x >= racket1.getPosition().x  //Si la position x de la balle est à droite de la raquette
         && ball.getPosition().y >= racket1.getPosition().y) //ET que sa position y est en bas de la raquette
 
-        &&               //COLLISION racket1
+        &&               
         
         (ball.getPosition().x <= (racket1.getPosition().x + widthRacket)) //ET que sa position x est à gauche de la raquette
         && ball.getPosition().y <= (racket1.getPosition().y + heightRacket)) //ET que sa position y est en haut de la raquette
@@ -80,10 +86,11 @@ int main()
             speedBall = -speedBall;
         }
 
+                //COLLISION racket2                   // FIXME : Régler le soucis d'enfoncement de la balle
           if ((ball.getPosition().x >= racket2.getPosition().x - sizeBall 
         && ball.getPosition().y >= racket2.getPosition().y - sizeBall) 
 
-        &&               //COLLISION racket2                                                // FIXME : Régler le soucis d'enfoncement de la balle
+        &&               
         
         (ball.getPosition().x <= (racket2.getPosition().x + widthRacket - sizeBall)) 
         && ball.getPosition().y <= (racket2.getPosition().y + heightRacket - sizeBall)) 
