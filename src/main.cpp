@@ -8,6 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Game.hpp"
+
 int main()
 {
     int screenWidth=1500;       //Largeur fenêtre
