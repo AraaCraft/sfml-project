@@ -3,8 +3,6 @@
 Game::Game()
 {
     gamePlaying = true;
-
-    sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML works!");
 }
 
 Game::~Game()
@@ -14,6 +12,8 @@ Game::~Game()
 
 void Game::loop()
 {
+    sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML works!");
+
     while (window.isOpen())
     {
         sf::Event event;
